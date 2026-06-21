@@ -1,0 +1,222 @@
+# Copyright (C) 2026 Hamed Takmil
+# This file is distributed under the same license as the Free Link Shortener plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Free Link Shortener 1.1.0\n"
+"Report-Msgid-Bugs-To: https://silvercover.ir\n"
+"POT-Creation-Date: 2026-06-21 08:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Free Link Shortener\n"
+"X-Domain: free-link-shortener\n"
+
+#. Plugin Name of the plugin
+msgid "Free Link Shortener"
+msgstr ""
+
+#. Description of the plugin
+msgid "Branded short links on your own domain, with click counting, detailed reports, editor metabox and quick row actions."
+msgstr ""
+
+#. Author of the plugin
+msgid "Hamed Takmil"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://silvercover.ir"
+msgstr ""
+
+# ============================================================
+# includes/class-links.php
+# ============================================================
+
+#: includes/class-links.php
+msgid "Local"
+msgstr ""
+
+#: includes/class-links.php
+msgid "Unknown"
+msgstr ""
+
+#: includes/class-links.php
+msgid "Other"
+msgstr ""
+
+# ============================================================
+# includes/class-admin-page.php
+# ============================================================
+
+#: includes/class-admin-page.php
+msgid "Link Shortener"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Access denied."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Create a New Link"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Target URL"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Custom slug (optional)"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Leave empty to auto-generate"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Create Short Link"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Created Links"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Short Link"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Copy"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Target"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Clicks"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Created"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Actions"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Copied!"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Report"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Delete this link?"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Delete"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "No links created yet."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Link created successfully."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Link deleted."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "This slug is already in use. Please choose another one."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Please enter a target URL."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Link not found."
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Click Report"
+msgstr ""
+
+#: includes/class-admin-page.php includes/class-integrations.php
+msgid "Short link:"
+msgstr ""
+
+#. translators: %s: total number of clicks.
+#: includes/class-admin-page.php
+msgid "Total clicks: %s"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Back"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Date / Time"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "IP Address"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Country"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Browser"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Referrer"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "Direct"
+msgstr ""
+
+#: includes/class-admin-page.php
+msgid "No clicks recorded yet."
+msgstr ""
+
+# ============================================================
+# includes/class-integrations.php
+# ============================================================
+
+#: includes/class-integrations.php
+msgid "No short link yet for this content."
+msgstr ""
+
+#: includes/class-integrations.php
+msgid "Copy short link"
+msgstr ""
+
+#: includes/class-integrations.php
+msgid "Shorten link"
+msgstr ""
+
+#: includes/class-integrations.php
+msgid "Could not create the link."
+msgstr ""
+
+# ============================================================
+# includes/class-plugin.php
+# ============================================================
+
+#: includes/class-plugin.php
+msgid "Something went wrong. Please try again."
+msgstr ""
