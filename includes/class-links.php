@@ -180,6 +180,57 @@ class Links {
         return ! empty( $result['success'] ) ? $result['link'] : null;
     }
 
+	/**
+	 * Update an existing link's target URL and/or slug.
+	 *
+	 * @param int    $id         Link ID.
+	 * @param string $target_url New destination URL.
+	 * @param string $slug       New slug.
+	 * @return array {
+	 *     @type bool   $success Whether the update succeeded.
+	 *     @type string $error   Error code on failure ('empty'|'duplicate'|'not_found').
+	 * }
+	 */
+	public function update( $id, $target_url, $slug ) {
+		global $wpdb;
+
+		$id = absint( $id );
+		if ( ! $this->get( $id ) ) {
+			return array( 'success' => false, 'error' => 'not_found' );
+		}
+
+		$target_url = esc_url_raw( $target_url );
+		if ( empty( $target_url ) ) {
+			return array( 'success' => false, 'error' => 'empty' );
+		}
+
+		$slug = sanitize_title( $slug );
+		if ( empty( $slug ) ) {
+			return array( 'success' => false, 'error' => 'empty' );
+		}
+
+		// Ensure the slug is not used by a different link.
+		$owner = $wpdb->get_var(
+			$wpdb->prepare( "SELECT id FROM {$this->links_table} WHERE slug = %s", $slug )
+		);
+		if ( $owner && absint( $owner ) !== $id ) {
+			return array( 'success' => false, 'error' => 'duplicate' );
+		}
+
+		$wpdb->update(
+			$this->links_table,
+			array(
+				'slug'       => $slug,
+				'target_url' => $target_url,
+			),
+			array( 'id' => $id ),
+			array( '%s', '%s' ),
+			array( '%d' )
+		);
+
+		return array( 'success' => true );
+	}
+
     /**
      * Delete a link and all of its recorded clicks.
      *
@@ -193,18 +244,42 @@ class Links {
         $wpdb->delete( $this->clicks_table, array( 'link_id' => $id ), array( '%d' ) );
     }
 
-    /**
-     * Get all links together with their click counts.
-     *
-     * @return array
-     */
-    public function get_all_with_counts() {
-        global $wpdb;
-        return $wpdb->get_results(
-            "SELECT l.*, (SELECT COUNT(*) FROM {$this->clicks_table} c WHERE c.link_id = l.id) AS clicks
-             FROM {$this->links_table} l ORDER BY l.created_at DESC"
-        );
-    }
+	/**
+	 * Get a paginated set of links together with their click counts.
+	 *
+	 * @param int $per_page Number of links per page.
+	 * @param int $page     Current page number (1-based).
+	 * @return array
+	 */
+	public function get_paged_with_counts( $per_page = 20, $page = 1 ) {
+		global $wpdb;
+
+		$per_page = max( 1, absint( $per_page ) );
+		$page     = max( 1, absint( $page ) );
+		$offset   = ( $page - 1 ) * $per_page;
+
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT l.*, (SELECT COUNT(*) FROM {$this->clicks_table} c WHERE c.link_id = l.id) AS clicks
+				 FROM {$this->links_table} l
+				 ORDER BY l.created_at DESC
+				 LIMIT %d OFFSET %d",
+				$per_page,
+				$offset
+			)
+		);
+	}
+
+	/**
+	 * Get the total number of links.
+	 *
+	 * @return int
+	 */
+	public function count_all() {
+		global $wpdb;
+		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$this->links_table}" );
+	}
+
 
     /**
      * Get all clicks for a given link.
