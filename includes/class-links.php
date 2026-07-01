@@ -86,12 +86,12 @@ class Links {
      * @param int $id Link ID.
      * @return object|null
      */
-    public function get( $id ) {
-        global $wpdb;
-        return $wpdb->get_row(
-            $wpdb->prepare( "SELECT * FROM {$this->links_table} WHERE id = %d", $id )
-        );
-    }
+	public function get( $id ) {
+		global $wpdb;
+		return $wpdb->get_row(
+			$wpdb->prepare( "SELECT * FROM %i WHERE id = %d", $this->links_table, absint( $id ) )
+		);
+	}
 
     /**
      * Find the link attached to a given post/product.
@@ -99,12 +99,12 @@ class Links {
      * @param int $post_id Post ID.
      * @return object|null
      */
-    public function get_by_post( $post_id ) {
-        global $wpdb;
-        return $wpdb->get_row(
-            $wpdb->prepare( "SELECT * FROM {$this->links_table} WHERE post_id = %d", $post_id )
-        );
-    }
+	public function get_by_post( $post_id ) {
+		global $wpdb;
+		return $wpdb->get_row(
+			$wpdb->prepare( "SELECT * FROM %i WHERE post_id = %d", $this->links_table, absint( $post_id ) )
+		);
+	}
 
     /**
      * Check whether a slug already exists.

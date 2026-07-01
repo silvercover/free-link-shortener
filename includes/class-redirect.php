@@ -86,7 +86,7 @@ class Redirect {
 
         $this->links->record_click( $link->id );
 
-        wp_redirect( esc_url_raw( $link->target_url ), 301 );
+        wp_redirect( esc_url_raw( $link->target_url ), 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
         exit;
     }
 }

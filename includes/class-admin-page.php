@@ -98,21 +98,23 @@ class Admin_Page {
      *
      * @return void
      */
-    public function handle_create() {
-        if ( ! current_user_can( 'manage_options' ) ) {
-            wp_die( esc_html__( 'Access denied.', 'free-link-shortener' ) );
-        }
-        check_admin_referer( 'fls_create_link' );
+	public function handle_create() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Access denied.', 'free-link-shortener' ) );
+		}
+		check_admin_referer( 'fls_create_link' );
 
-        $target = isset( $_POST['target_url'] ) ? wp_unslash( $_POST['target_url'] ) : '';
-        $slug   = isset( $_POST['custom_slug'] ) ? wp_unslash( $_POST['custom_slug'] ) : '';
+		// Nonce verified above; sanitize inputs at read time.
+		$target = isset( $_POST['target_url'] ) ? esc_url_raw( wp_unslash( $_POST['target_url'] ) ) : '';
+		$slug   = isset( $_POST['custom_slug'] ) ? sanitize_title( wp_unslash( $_POST['custom_slug'] ) ) : '';
 
-        $result = $this->links->create( $target, $slug );
-        $msg    = ! empty( $result['success'] ) ? 'created' : $result['error'];
+		$result = $this->links->create( $target, $slug );
+		$msg    = ! empty( $result['success'] ) ? 'created' : $result['error'];
 
-        wp_safe_redirect( admin_url( 'admin.php?page=free-link-shortener&msg=' . $msg ) );
-        exit;
-    }
+		wp_safe_redirect( admin_url( 'admin.php?page=free-link-shortener&msg=' . $msg ) );
+		exit;
+	}
+
 	
 	/**
 	 * Handle the "update link" form submission.
@@ -126,8 +128,8 @@ class Admin_Page {
 		check_admin_referer( 'fls_update_link' );
 
 		$id     = isset( $_POST['link_id'] ) ? absint( $_POST['link_id'] ) : 0;
-		$target = isset( $_POST['target_url'] ) ? wp_unslash( $_POST['target_url'] ) : '';
-		$slug   = isset( $_POST['custom_slug'] ) ? wp_unslash( $_POST['custom_slug'] ) : '';
+		$target = isset( $_POST['target_url'] ) ? esc_url_raw( wp_unslash( $_POST['target_url'] ) ) : '';
+		$slug   = isset( $_POST['custom_slug'] ) ? sanitize_title( wp_unslash( $_POST['custom_slug'] ) ) : '';
 
 		$result = $this->links->update( $id, $target, $slug );
 

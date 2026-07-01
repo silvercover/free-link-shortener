@@ -55,11 +55,11 @@ class Plugin {
      * @return void
      */
     public function run() {
-        load_plugin_textdomain(
+        /*load_plugin_textdomain(
             'free-link-shortener',
             false,
             dirname( plugin_basename( FLS_FILE ) ) . '/languages'
-        );
+        );*/
 
         ( new Redirect( $this->links ) )->register();
 

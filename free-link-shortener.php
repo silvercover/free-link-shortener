@@ -7,6 +7,7 @@
  * Author URI: https://silvercover.ir
  * Text Domain: free-link-shortener
  * Domain Path: /languages
+ * License: GPLv2 or later
  */
 
 namespace FreeLinkShortener;
